@@ -1,0 +1,12 @@
+[package]
+name = "mqtt-gpio-sensor"
+version = "0.1.0"
+authors = ["Sebastian Reichel <sre@ring0.de>"]
+
+[dependencies]
+rumqtt = { git = "https://github.com/AtherEnergy/rumqtt" }
+mqtt311 = "0.2"
+gpiochip = { git = "https://github.com/sre/rust-gpiochip" }
+rust-ini = "0.14"
+libc = "0.2"
+seccomp-sys = "0.1"

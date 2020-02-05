@@ -1,0 +1,30 @@
+[Unit]
+Description=MQTT GPIO Sensor
+After=network.target
+
+# do not restart if there are more than 30 fails in 1h
+# this makes the process visible in systemctl --failed
+StartLimitIntervalSec=3600
+StartLimitBurst=30
+
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/mqtt-gpio-sensor /etc/mqtt-gpio-sensor-%I.cfg
+StandardOutput=journal
+StandardError=journal
+
+MemoryLimit=4M
+TasksMax=3
+
+ProtectSystem=strict
+ProtectHome=read-only
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=false
+
+# restart on fail
+Restart=always
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target
